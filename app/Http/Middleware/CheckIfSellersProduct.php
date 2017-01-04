@@ -26,19 +26,40 @@ class CheckIfSellersProduct
      */
     public function handle($request, Closure $next)
     {
-        $userID = $request->user()->user_id;
-
-        //Get seller id from
-        $sellerID = $this->seller->getSellerID($userID);
-
-        //get the product id from the URL
-        $productID = $request->inventory;
+        $seller = Seller::where('user_id', $request->user()->user_id)->first();
 
         //Check if product belongs to the seller
-        if(($this->product->where(['seller_id' => $sellerID, 'product_id' => $productID])->first())){
+        if((Product::where(['seller_id' => $seller->seller_id, 'product_id' => $request->product]))){
            return $next($request);
         }
 
-        return redirect('/inventory');
+        return redirect('/products');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

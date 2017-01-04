@@ -3,7 +3,7 @@
 @section('content')
 <h1 class="page-header">Edit: {{$data['product']->product_title}}</h1>
 
-<a href="{{ URL::to('inventory', [$data['product']->product_id]) }}" class="btn btn-primary">Back</a>
+<a href="{{ URL::to('products', [$data['product']->product_id]) }}" class="btn btn-primary">Back</a>
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -15,7 +15,7 @@
     </div>
 @endif
 
-<form class="col-md-12" method="post" action="/inventory/{{$data['product']->product_id}}" >
+<form class="col-md-12" method="post" action="/products/{{$data['product']->product_id}}" >
 
   {{ method_field('PUT') }}
 
@@ -26,23 +26,22 @@
 
   <div class="form-group">
     <label for="prodCategory">Product Category:</label>
-    <select class="form-control" id="prodCategory" name="category">
+    <select class="form-control" id="prodCategory" name="category_id">
       <option>Select category...</option>
       @foreach ($data['categories'] as $category)
-
-        @if($category['category_id'] === $data['product']->category_id)
-          <option value="{{ $category['title'] }}" selected>{{ $category['title'] }}</option>
-        @else
-          <option value="{{ $category['title'] }}">{{ $category['title'] }}</option>
-        @endif
-
+      @if($category['category_id'] === $data['product']->category_id)
+        <option value="{{ $category['category_id'] }}" selected>{{ $category['title'] }}</option>
+      @else
+        <option value="{{ $category['category_id'] }}">{{ $category['title'] }}</option>
+      @endif
       @endforeach
     </select>
   </div>
 
+
   <div class="form-group">
     <label for="exampleInputEmail1">Product Price</label>
-    <input type="number" step="0.01" name="product_price" class="form-control" value="{{Helper::displayMoneyFormat($data['product']->product_price)}}" >
+    <input type="number" step="0.01" name="product_price" class="form-control" value="{{displayMoneyFormat($data['product']->product_price)}}" >
   </div>
 
   <div class="form-group">

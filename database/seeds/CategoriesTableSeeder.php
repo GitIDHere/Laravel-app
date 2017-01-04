@@ -24,11 +24,11 @@ class CategoriesTableSeeder extends Seeder
              'Computers',
              'Electronics'
         ];
-
+        
       for ($i=0; $i < count($categories); $i++) {
-        Category::create(array(
+        Category::create([
           'title' => $categories[$i]
-        ));
+        ]);
       }
 
     }

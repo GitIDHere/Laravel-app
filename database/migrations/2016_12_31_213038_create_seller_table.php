@@ -15,7 +15,10 @@ class CreateSellerTable extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
           $table->increments('seller_id');
+
           $table->integer('user_id')->unsigned()->index();
+          $table->foreign('user_id')->references('user_id')->on('users');
+
           $table->string('company_name');
           $table->timestamps();
         });

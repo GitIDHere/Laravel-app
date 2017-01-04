@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+    <link rel="stylesheet" href="/css/libs.css">
+
 </head>
 <body>
 
@@ -59,7 +61,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="{{ Request::is('seller-dashboard') ? 'active' : '' }}"><a href="{{ url('seller-dashboard') }}">Overview <span class="sr-only">(current)</span></a></li>
-            <li class="{{ Request::is('inventory') ? 'active' : '' }}"><a href="{{ url('inventory') }}">My Inventory</a></li>
+            <li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ url('products') }}">My Products</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -87,5 +89,9 @@
 
     <!-- Scripts -->
     <script src="{{ elixir('js/app.js') }}"></script>
+    <script src="/js/libs.js"></script>
+
+    @include ('partials/flash')
+
 </body>
 </html>

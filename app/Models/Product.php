@@ -8,6 +8,7 @@ class Product extends Model
 {
 
     protected $fillable = [
+        'category_id',
         'product_title',
         'product_price',
         'stock_amount',
@@ -17,17 +18,17 @@ class Product extends Model
     ];
 
     protected $hidden = [
-        'seller_id', 'category_id', 'product_id'
+        'seller_id', 'product_id'
     ];
-
+    
     protected $primaryKey = 'product_id';
 
     public function seller(){
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo('App\Models\Seller');
     }
 
     public function category(){
-      return $this->hasOne(Category::class, 'category_id');
+      return $this->hasOne('App\Models\Category');
     }
 
     public function setFields(array $requestColumns){

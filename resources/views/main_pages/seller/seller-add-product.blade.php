@@ -13,7 +13,7 @@
     </div>
 @endif
 
-<form class="col-md-12" method="post" action="/inventory">
+<form class="col-md-12" method="post" action="/products">
 
   <div class="form-group">
     <label for="exampleInputEmail1">Product Title</label>
@@ -22,10 +22,10 @@
 
   <div class="form-group">
     <label for="prodCategory">Product Category:</label>
-    <select class="form-control" id="prodCategory" name="category">
+    <select class="form-control" id="prodCategory" name="category_id">
       <option>Select category...</option>
-      @foreach ($categories as $category)
-        <option value="{{ $category['title'] }}">{{ $category['title'] }}</option>
+      @foreach ($categories as $id => $category)
+        <option value="{{ $category['category_id'] }}">{{ $category['title'] }}</option>
       @endforeach
     </select>
   </div>

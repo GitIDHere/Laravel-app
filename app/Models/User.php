@@ -9,7 +9,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -20,8 +19,11 @@ class User extends Authenticatable
 
     protected $primaryKey = 'user_id';
 
+
+
+    
     public function seller(){
-      return $this->hasOne(Seller::class);
+      return $this->hasOne('App\Models\Seller');
     }
 
 

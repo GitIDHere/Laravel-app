@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\StoreProduct;
 
@@ -15,27 +16,24 @@ use App\Helpers\Helper;
 class InventoryController extends Controller
 {
 
-
     public function __construct(){
         $this->middleware('sellersProduct', ['only' => ['show', 'edit', 'update', 'destroy']]);
     }
-
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product, Seller $seller, Category $category)
+    public function index()
     {
-        $sellerID = $seller->getSellerID(Auth::user()->user_id);
-        $products = $product->where('seller_id', $sellerID)->get();
 
-        $categories = $category->all();
+        $seller = Seller::where('user_id', Auth::user()->user_id)->first();
 
-        for ($i=0; $i < count($products); $i++) {
-          $products[$i]->category_title = $categories[$products[$i]->category_id - 1]->title;
-        }
+        $products = DB::table('products')
+                    ->join('categories', 'products.category_id', '=', 'categories.category_id')
+                    ->where('seller_id', $seller->seller_id)
+                    ->get();
 
         return view('main_pages.seller.seller-inventory')->with('products', $products);
     }
@@ -45,10 +43,10 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Category $category)
+    public function create()
     {
         return view('main_pages.seller.seller-add-product')
-        ->with('categories', $category->all());
+        ->with('categories', Category::all());
     }
 
     /**
@@ -57,21 +55,19 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduct $request, Seller $seller, Product $product, Category $category)
+    public function store(StoreProduct $request, Seller $seller)
     {
-        //Set the fields that aren't in the form.
-        $product->seller_id = $seller->getSellerID(Auth::user()->user_id);
-        $product->category_id = $category->getCategoryID($request->get('category'));
+        //Find the seller
+        $seller = Seller::where('user_id', Auth::user()->user_id)->first();
 
-        //Multiply the given money amount by 100 to remove decimal points
-        //Merge replaces existing values as well
+        //Convert the money from to base 100
         $request->merge(['product_price' => Helper::dbMoneyFormat($request->product_price)]);
 
-        $product->setFields($request->all());
+        $seller->products()->create($request->all());
 
-        $product->save();
+        flash()->sccess('Success', 'Product successfully created');
 
-        return Redirect::to('inventory');;
+        return Redirect::to('products');;
     }
 
     /**
@@ -80,12 +76,12 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
         return view('main_pages.seller.seller-view-product')
         ->with('product', $product);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -93,16 +89,12 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Category $category)
+    public function edit(Product $product, Category $category)
     {
-        $product = Product::find($id);
-
-        $categories = $category->all();
-
         return view('main_pages.seller.seller-edit-product')
         ->with('data', [
           'product' => $product,
-          'categories' => $categories
+          'categories' => $category->all()
         ]);
     }
 
@@ -113,22 +105,15 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProduct $request, $id, Seller $seller, Category $category)
+    public function update(StoreProduct $request, Product $product)
     {
-        $product = Product::find($id);
+        //Convert the money from to base 100
+        $request->merge(['product_price' => dbMoneyFormat($request->product_price)]);
 
-        //Populate the input params into product
-        $product->setFields($request->all());
+        //Populate the updated input fields into product
+        $product->update($request->all());
 
-        //Set the category id
-        $product->category_id = $category->getCategoryID($request->get('category'));
-
-        //Multiply the given money amount by 100 to remove decimal points
-        $product->product_price = Helper::dbMoneyFormat($request->product_price);
-
-        $product->save();
-
-        return Redirect::to('inventory/'.$product->product_id);
+        return Redirect::to('products/'.$product->product_id);
     }
 
 
@@ -138,9 +123,9 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        Product::find($id)->delete();
-        return Redirect::to('inventory/');
+        $product->delete();
+        return Redirect::to('products/');
     }
 }
