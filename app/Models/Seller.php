@@ -31,4 +31,36 @@ class Seller extends Model
         return $this->where('user_id', $userID)->first()->seller_id;
     }
 
+
+    public function scopeGetSellerID($query, $userID){
+        return $query->where('user_id', $userID);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

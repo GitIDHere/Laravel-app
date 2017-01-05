@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\StoreProduct;
 
@@ -24,9 +23,13 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Seller $seller)
     {
-        $products = Product::where('seller_id', Auth::user()->user_id)->with('category')->get();
+        //Get seller ID from the current user logged in
+        $sellerID = $seller->getSellerID(Auth::user()->user_id);
+
+        //Eager load the products attaching the categories title
+        $products = Product::where('seller_id', $sellerID)->with('category')->get();
 
         return view('main_pages.seller.seller-inventory')->with('products', $products);
     }
@@ -48,10 +51,10 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProduct $request, Seller $seller)
+    public function store(StoreProduct $request)
     {
         //Find the seller
-        $seller = Seller::where('user_id', Auth::user()->user_id)->first();
+        $seller = Seller::where('user_id', Auth::user()->user_id);
 
         $seller->products()->create($request->all());
 
