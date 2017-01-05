@@ -90,8 +90,8 @@
     <!-- Scripts -->
     <script src="{{ elixir('js/app.js') }}"></script>
     <script src="/js/libs.js"></script>
-
-    @include ('partials/flash')
+    
+    @include ('partials.flash')
 
 </body>
 </html>

@@ -11,7 +11,6 @@ use App\Http\Requests\StoreProduct;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Category;
-use App\Helpers\Helper;
 
 class InventoryController extends Controller
 {
@@ -61,11 +60,11 @@ class InventoryController extends Controller
         $seller = Seller::where('user_id', Auth::user()->user_id)->first();
 
         //Convert the money from to base 100
-        $request->merge(['product_price' => Helper::dbMoneyFormat($request->product_price)]);
+        $request->merge(['product_price' => dbMoneyFormat($request->product_price)]);
 
         $seller->products()->create($request->all());
 
-        flash()->sccess('Success', 'Product successfully created');
+        flash()->success('Success', 'Product successfully created');
 
         return Redirect::to('products');;
     }

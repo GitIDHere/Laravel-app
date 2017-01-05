@@ -4,7 +4,7 @@ namespace App\Http;
 
 class Flash {
 
-    private function sessionFlash($title, $message, $key = 'flash', $type = 'info'){
+    public function sessionFlash($title, $message, $type = 'info', $key = 'flash'){
         session()->flash($key, [
             'title' => $title,
             'message' => $message,
@@ -25,8 +25,7 @@ class Flash {
     }
 
     public function overlay($title, $message, $type = 'success'){
-        return $this->sessionFlash($title, $message, 'flash_overlay', $type);
+        return $this->sessionFlash($title, $message, $type, 'flash_overlay');
     }
-
 
 }
