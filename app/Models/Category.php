@@ -15,15 +15,7 @@ class Category extends Model
     protected $table = 'categories';
 
     public function product(){
-      return $this->belongsTo('App\Models\Product');
+      return $this->hasMany('App\Models\Product');
     }
-
-    // public function getCategoryID($chosenCategory){
-    //     return $this->where('title', $chosenCategory)->first()->category_id;
-    // }
-    //
-    // public function getCategoryTitle($categoryID){
-    //     return $this->where('category_id', $categoryID)->first()->category_title;
-    // }
 
 }

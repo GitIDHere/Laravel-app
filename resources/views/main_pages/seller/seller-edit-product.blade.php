@@ -41,17 +41,17 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1">Product Price</label>
-    <input type="number" step="0.01" name="product_price" class="form-control" value="{{displayMoneyFormat($data['product']->product_price)}}" >
+    <input type="number" step="0.01" name="product_price" class="form-control" value="{{ $data['product']->product_price }}" >
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Stock Amount</label>
-    <input type="number" name="stock_amount" class="form-control" value="{{$data['product']->stock_amount}}" >
+    <input type="number" name="stock_amount" class="form-control" value="{{ $data['product']->stock_amount }}" >
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Delivery Charge</label>
-    <input type="number" name="delivery_cost" class="form-control" value="{{$data['product']->delivery_cost}}" >
+    <input type="number" name="delivery_cost" class="form-control" value="{{ $data['product']->delivery_cost }}" >
   </div>
 
   <div class="form-group">

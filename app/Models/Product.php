@@ -20,7 +20,7 @@ class Product extends Model
     protected $hidden = [
         'seller_id', 'product_id'
     ];
-    
+
     protected $primaryKey = 'product_id';
 
     public function seller(){
@@ -28,11 +28,27 @@ class Product extends Model
     }
 
     public function category(){
-      return $this->hasOne('App\Models\Category');
+      return $this->belongsTo('App\Models\Category');
     }
+
+    public function getProductPriceAttribute($price){
+        return number_format(($price / 100), 2);
+    }
+
+    public function setProductPriceAttribute($price){
+        $this->attributes['product_price'] = $price * 100;
+    }
+
+
+
+
+
+
+
 
     public function setFields(array $requestColumns){
         return $this->fill($requestColumns);
     }
+
 
 }

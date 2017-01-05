@@ -14,7 +14,7 @@
       {{ method_field('DELETE') }}
   </form>
 
-  <p>Price: {{displayMoneyFormat($product->product_price)}}</p>
+  <p>Price: {{ $product->product_price }}</p>
   <p>Stock: {{{$product->stock_amount}}}</p>
   <p>Delivery Cost: {{{$product->delivery_cost}}}</p>
   <p>Short Description: {{{$product->short_description}}}</p>

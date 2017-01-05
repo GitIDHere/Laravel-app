@@ -26,13 +26,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-
-        $seller = Seller::where('user_id', Auth::user()->user_id)->first();
-
-        $products = DB::table('products')
-                    ->join('categories', 'products.category_id', '=', 'categories.category_id')
-                    ->where('seller_id', $seller->seller_id)
-                    ->get();
+        $products = Product::where('seller_id', Auth::user()->user_id)->with('category')->get();
 
         return view('main_pages.seller.seller-inventory')->with('products', $products);
     }
@@ -58,9 +52,6 @@ class InventoryController extends Controller
     {
         //Find the seller
         $seller = Seller::where('user_id', Auth::user()->user_id)->first();
-
-        //Convert the money from to base 100
-        $request->merge(['product_price' => dbMoneyFormat($request->product_price)]);
 
         $seller->products()->create($request->all());
 
@@ -106,9 +97,6 @@ class InventoryController extends Controller
      */
     public function update(StoreProduct $request, Product $product)
     {
-        //Convert the money from to base 100
-        $request->merge(['product_price' => dbMoneyFormat($request->product_price)]);
-
         //Populate the updated input fields into product
         $product->update($request->all());
 

@@ -7,18 +7,18 @@ if (! function_exists('ellipsis')) {
     }
 }
 
-if (! function_exists('displayMoneyFormat')) {
-    function displayMoneyFormat($money){
-      return number_format(($money / 100), 2);
-    }
-}
+// if (! function_exists('displayMoneyFormat')) {
+//     function displayMoneyFormat($money){
+//       return number_format(($money / 100), 2);
+//     }
+// }
 
 
-if (! function_exists('dbMoneyFormat')) {
-    function dbMoneyFormat($money){
-        return ($money * 100);
-    }
-}
+// if (! function_exists('dbMoneyFormat')) {
+//     function dbMoneyFormat($money){
+//         return ($money * 100);
+//     }
+// }
 
 if (! function_exists('flash')) {
     function flash($title = null, $message = null){

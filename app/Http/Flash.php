@@ -23,7 +23,7 @@ class Flash {
     public function error($title, $message){
         return $this->sessionFlash($title, $message, 'error');
     }
-
+    
     public function overlay($title, $message, $type = 'success'){
         return $this->sessionFlash($title, $message, $type, 'flash_overlay');
     }
