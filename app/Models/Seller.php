@@ -27,16 +27,23 @@ class Seller extends Model
         return $this->hasMany('App\Models\Product');
     }
 
-    public function getSellerID($userID){
-        return $this->where('user_id', $userID)->first()->seller_id;
-    }
+    // public function getSellerID($userID){
+    //     return $this->where('user_id', $userID)->first()->seller_id;
+    // }
+
 
 
     public function scopeGetSellerID($query, $userID){
-        return $query->where('user_id', $userID);
+        return $query->where('user_id', $userID)->first()->seller_id;
     }
 
+    public function scopeGetSeller($query, $userID){
+        return $query->where('seller_id', $userID)->first();
+    }
 
+    public function addProduct($product){
+        return $this->products()->create($product);
+    }
 
 
 

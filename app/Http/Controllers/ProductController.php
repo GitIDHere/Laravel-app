@@ -11,7 +11,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\Category;
 
-class InventoryController extends Controller
+class ProductController extends Controller
 {
 
     public function __construct(){
@@ -23,15 +23,15 @@ class InventoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Seller $seller)
+    public function index()
     {
         //Get seller ID from the current user logged in
-        $sellerID = $seller->getSellerID(Auth::user()->user_id);
+        $sellerID = Seller::getSellerID(Auth::user()->user_id);
 
         //Eager load the products attaching the categories title
         $products = Product::where('seller_id', $sellerID)->with('category')->get();
 
-        return view('main_pages.seller.seller-inventory')->with('products', $products);
+        return view('main_pages.seller.seller-products')->with('products', $products);
     }
 
     /**
@@ -54,14 +54,32 @@ class InventoryController extends Controller
     public function store(StoreProduct $request)
     {
         //Find the seller
-        $seller = Seller::where('user_id', Auth::user()->user_id);
+        $seller = Seller::getSeller(Auth::user()->user_id);
 
-        $seller->products()->create($request->all());
+        $seller->addProduct($request->all());
 
         flash()->success('Success', 'Product successfully created');
 
         return Redirect::to('products');;
     }
+
+
+
+    public function thing(Request $request){
+        dd($request);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -82,12 +100,12 @@ class InventoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product, Category $category)
+    public function edit(Product $product)
     {
         return view('main_pages.seller.seller-edit-product')
         ->with('data', [
           'product' => $product,
-          'categories' => $category->all()
+          'categories' => Category::all()
         ]);
     }
 

@@ -30,7 +30,7 @@ class Product extends Model
     public function category(){
       return $this->belongsTo('App\Models\Category');
     }
-
+    
     public function getProductPriceAttribute($price){
         return number_format(($price / 100), 2);
     }

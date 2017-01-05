@@ -19,5 +19,6 @@ Route::get('my-account', 'MyAccountController@index');
 
 Route::group(['middleware' => ['auth', 'seller']], function () {
     Route::get('seller-dashboard', 'SellerController@index');
-    Route::resource('products', 'InventoryController');
+    Route::post('thing', 'ProductController@thing');
+    Route::resource('products', 'ProductController');
 });
