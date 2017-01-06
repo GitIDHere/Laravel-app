@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form id="add-product-form" class="col-md-12" method="post" action="/products" enctype="multipart/form-data">
+    <form id="add-product-form" class="col-md-12" method="post" action="{{ URL::route('store-product') }}" enctype="multipart/form-data">
 
         @include ('partials.product-form')
 
@@ -21,7 +21,6 @@
 
     </form>
 @endsection()
-
 
 
 @section('scripts.footer')

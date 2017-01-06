@@ -1,9 +1,9 @@
 @extends('layouts.master-seller')
 
 @section('content')
-<h1 class="page-header">Edit: {{$data['product']->product_title}}</h1>
+<h1 class="page-header">Edit: {{ $data['product']->product_title }}</h1>
 
-<a href="{{ URL::to('products', [$data['product']->product_id]) }}" class="btn btn-primary">Back</a>
+<a href="{{ URL::route('show-product', $data['product']) }}" class="btn btn-primary">Back</a>
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -15,13 +15,13 @@
     </div>
 @endif
 
-<form class="col-md-12" method="post" action="/products/{{$data['product']->product_id}}" >
+<form class="col-md-12" method="post" action="{{ URL::route('update-product', $data['product'])}}" >
 
   {{ method_field('PUT') }}
 
   <div class="form-group">
     <label for="exampleInputEmail1">Product Title</label>
-    <input type="text" name="product_title" class="form-control" value="{{$data['product']->product_title}}">
+    <input type="text" name="product_title" class="form-control" value="{{ $data['product']->product_title }}">
   </div>
 
   <div class="form-group">
@@ -64,8 +64,8 @@
     <textarea class="form-control" name="full_description" id="exampleTextarea" rows="3">{{$data['product']->full_description}}</textarea>
   </div>
 
-  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+  {{ csrf_field() }}
+  
   <button type="submit" class="btn btn-primary">Save</button>
 
 </form>

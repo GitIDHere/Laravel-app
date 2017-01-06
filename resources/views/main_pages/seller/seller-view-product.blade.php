@@ -3,13 +3,13 @@
 @section('content')
   <h1 class="page-header">{{$product->product_title}}</h1>
 
-  <a href="{{ URL::to('products') }}" class="btn btn-primary">Back</a>
+  <a href="{{ URL::route('all-products') }}" class="btn btn-primary">Back</a>
 
   <a href="#" class="dropdown-toggle btn btn-danger" onclick="event.preventDefault(); document.getElementById('dlt-prod-frm').submit();">
       Delete
   </a>
 
-  <form id="dlt-prod-frm" action="/products/{{$product->product_id}}" method="POST" style="display: none;">
+  <form id="dlt-prod-frm" action="{{ URL::route('destroy-product', $product) }}" method="POST" style="display: none;">
       {{ csrf_field() }}
       {{ method_field('DELETE') }}
   </form>
@@ -20,6 +20,6 @@
   <p>Short Description: {{{$product->short_description}}}</p>
   <p>Full Description: {{{$product->full_description}}}</p>
 
-  <a href="{{ url('products/'.$product->product_id.'/edit') }}" class="btn btn-primary">Edit</a>
+  <a href="{{ URL::route('edit-product-form', $product) }}" class="btn btn-primary">Edit</a>
 
 @endsection()

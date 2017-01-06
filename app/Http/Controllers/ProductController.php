@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         //Eager load the products attaching the categories title
         $products = Product::where('seller_id', $sellerID)->with('category')->get();
-
+        
         return view('main_pages.seller.seller-products')->with('products', $products);
     }
 
@@ -62,22 +62,6 @@ class ProductController extends Controller
 
         return Redirect::to('products');;
     }
-
-
-
-    public function thing(Request $request){
-        dd($request);
-    }
-
-
-
-
-
-
-
-
-
-
 
 
 

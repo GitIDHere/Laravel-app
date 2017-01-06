@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="page-header">My Products</h1>
-    <a href="{{ URL::to('products/create') }}" class="btn btn-primary">+ Add Product</a>
+    <a href="{{ URL::route('create-product-form') }}" class="btn btn-primary">+ Add Product</a>
     <div>
         @foreach($products as $product)
           <div class="col-xs-6 col-sm-3 placeholder">
