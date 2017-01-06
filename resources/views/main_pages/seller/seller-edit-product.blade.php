@@ -3,6 +3,8 @@
 @section('content')
 <h1 class="page-header">Edit: {{ $data['product']->product_title }}</h1>
 
+{!! Breadcrumbs::render('Edit-Product', $data['product']) !!}
+
 <a href="{{ URL::route('show-product', $data['product']) }}" class="btn btn-primary">Back</a>
 
 @if (count($errors) > 0)
@@ -65,7 +67,7 @@
   </div>
 
   {{ csrf_field() }}
-  
+
   <button type="submit" class="btn btn-primary">Save</button>
 
 </form>

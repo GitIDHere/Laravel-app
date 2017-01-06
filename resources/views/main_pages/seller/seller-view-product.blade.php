@@ -3,6 +3,8 @@
 @section('content')
   <h1 class="page-header">{{$product->product_title}}</h1>
 
+  {!! Breadcrumbs::render('Show-Product', $product) !!}
+
   <a href="{{ URL::route('all-products') }}" class="btn btn-primary">Back</a>
 
   <a href="#" class="dropdown-toggle btn btn-danger" onclick="event.preventDefault(); document.getElementById('dlt-prod-frm').submit();">

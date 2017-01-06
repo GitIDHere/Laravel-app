@@ -2,6 +2,9 @@
 
 @section('content')
     <h1 class="page-header">My Products</h1>
+
+    {!! Breadcrumbs::render('Products') !!}
+
     <a href="{{ URL::route('create-product-form') }}" class="btn btn-primary">+ Add Product</a>
     <div>
         @foreach($products as $product)

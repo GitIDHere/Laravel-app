@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="exampleInputEmail1">Product Title</label>
-    <input type="text" name="product_title" class="form-control" value="{{ old('product_title') }}">
+    <input type="text" name="product_title" class="form-control" value="{{{ old('product_title') }}}">
 </div>
 
 <div class="form-group">
