@@ -60,7 +60,7 @@
             <!-- Sidenav -->
             <div class="col-sm-3 col-md-2 sidebar">
               <ul class="nav nav-sidebar">
-                <li class="{{ Request::is('seller-dashboard') ? 'active' : '' }}"><a href="{{ URL::route('seller-dashboard') }}">Overview <span class="sr-only">(current)</span></a></li>
+                <li class="{{ Request::is('seller-dashboard') ? 'active' : '' }}"><a href="{{ URL::route('seller-overview') }}">Overview <span class="sr-only">(current)</span></a></li>
                 <li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ URL::route('all-products') }}">My Products</a></li>
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Export</a></li>

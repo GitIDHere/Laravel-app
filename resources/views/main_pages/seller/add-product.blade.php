@@ -1,4 +1,4 @@
-@extends('layouts.master-seller')
+@extends('masters.master-seller')
 
 @section('content')
     <h1 class="page-header">Add Product To Sell</h1>

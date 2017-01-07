@@ -1,4 +1,4 @@
-@extends('layouts.master-seller')
+@extends('masters.master-seller')
 
 @section('content')
 <h1 class="page-header">Edit: {{ $data['product']->product_title }}</h1>

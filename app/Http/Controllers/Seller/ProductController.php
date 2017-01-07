@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Seller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +31,9 @@ class ProductController extends Controller
         //Eager load the products attaching the categories title
         $products = Product::where('seller_id', $sellerID)->with('category')->get();
 
-        return view('main_pages.seller.seller-products')->with('products', $products);
+        return view('main_pages.seller.products')->with('products', $products);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +41,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('main_pages.seller.seller-add-product')
+        return view('main_pages.seller.add-product')
         ->with('categories', Category::all());
     }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('main_pages.seller.seller-view-product')
+        return view('main_pages.seller.view-product')
         ->with('product', $product);
     }
 
@@ -86,7 +86,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('main_pages.seller.seller-edit-product')
+        return view('main_pages.seller.edit-product')
         ->with('data', [
           'product' => $product,
           'categories' => Category::all()
@@ -104,6 +104,8 @@ class ProductController extends Controller
     {
         //Populate the updated input fields into product
         $product->update($request->all());
+        
+        flash()->success('Success', 'Product successfully editted');
 
         return Redirect::to('products/'.$product->product_id);
     }

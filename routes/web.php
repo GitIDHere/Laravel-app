@@ -17,9 +17,13 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('my-account', 'MyAccountController@index');
 
+
+
+
+
 Route::group(['middleware' => ['auth', 'seller']], function () {
 
-    Route::get('seller-dashboard', ['as' => 'seller-dashboard', 'uses' => 'SellerController@index']);
+    Route::get('seller-dashboard', ['as' => 'seller-overview', 'uses' => 'Seller\OverviewController@index']);
 
     Route::resource('products', 'ProductController', ['names' => [
         'index' => 'all-products',
