@@ -20,6 +20,8 @@ class CreateSellerTable extends Migration
           $table->foreign('user_id')->references('user_id')->on('users');
 
           $table->string('company_name');
+          $table->string('company_email');
+          
           $table->timestamps();
         });
     }

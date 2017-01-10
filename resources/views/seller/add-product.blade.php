@@ -5,15 +5,7 @@
 
     {!! Breadcrumbs::render('Add-Product') !!}
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('partials.errors')
 
     <form id="add-product-form" class="col-md-12" method="post" action="{{ URL::route('store-product') }}" enctype="multipart/form-data">
 

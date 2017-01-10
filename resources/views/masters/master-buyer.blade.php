@@ -61,7 +61,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                      <a href="{{ url('/my-account') }}">My Account</a>
+                                      <a href="{{ URL::route('my-account') }}">My Account</a>
                                       </li>
                                     <li>
                                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

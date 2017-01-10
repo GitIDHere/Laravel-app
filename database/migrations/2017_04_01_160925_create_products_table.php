@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
 
             $table->integer('seller_id')->unsigned()->index();
             $table->foreign('seller_id')->references('seller_id')->on('sellers');
-
+            
             $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('category_id')->on('categories');
 

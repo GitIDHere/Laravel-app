@@ -23,6 +23,6 @@ class SellerAuthenticated
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect()->route('seller-register');
     }
 }

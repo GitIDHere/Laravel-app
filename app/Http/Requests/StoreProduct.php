@@ -33,9 +33,9 @@ class StoreProduct extends FormRequest
           'full_description' => 'required|string|max:1000'
         ];
     }
-
+    
     /**
-     * Get the error messages for the defined validation rules.
+     * Set the error messages for the defined validation rules.
      *
      * @return array
      */

@@ -63,19 +63,8 @@
                 <li class="{{ Request::is('seller-dashboard') ? 'active' : '' }}"><a href="{{ URL::route('seller-overview') }}">Overview <span class="sr-only">(current)</span></a></li>
                 <li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ URL::route('all-products') }}">My Products</a></li>
                 <li><a href="#">Analytics</a></li>
-                <li><a href="#">Export</a></li>
-              </ul>
-              <ul class="nav nav-sidebar">
-                <li><a href="">Nav item</a></li>
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-                <li><a href="">More navigation</a></li>
-              </ul>
-              <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Settings</a></li>
               </ul>
             </div>
             <!-- Sidenav -->

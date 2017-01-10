@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Http\Controllers\Controller;
+
 use App\Http\Requests\StoreProduct;
 
 use App\Models\Product;
@@ -31,7 +33,7 @@ class ProductController extends Controller
         //Eager load the products attaching the categories title
         $products = Product::where('seller_id', $sellerID)->with('category')->get();
 
-        return view('main_pages.seller.products')->with('products', $products);
+        return view('seller.products')->with('products', $products);
     }
 
     /**
@@ -41,7 +43,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('main_pages.seller.add-product')
+        return view('seller.add-product')
         ->with('categories', Category::all());
     }
 
@@ -73,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('main_pages.seller.view-product')
+        return view('seller.view-product')
         ->with('product', $product);
     }
 
@@ -86,8 +88,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('main_pages.seller.edit-product')
-        ->with('data', [
+        return view('seller.edit-product')
+        ->with([
           'product' => $product,
           'categories' => Category::all()
         ]);
@@ -104,7 +106,7 @@ class ProductController extends Controller
     {
         //Populate the updated input fields into product
         $product->update($request->all());
-        
+
         flash()->success('Success', 'Product successfully editted');
 
         return Redirect::to('products/'.$product->product_id);

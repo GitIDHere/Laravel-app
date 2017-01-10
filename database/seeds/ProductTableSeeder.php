@@ -46,11 +46,13 @@ class ProductTableSeeder extends Seeder
 
 
         $seller1 = $user1->seller()->create([
-            'company_name' => "John's Shop"
+            'company_name' => "John's Shop",
+            'company_email' => 'john@company.com'
         ]);
 
         $seller2 = $user2->seller()->create([
-            'company_name' => "Samir's Shop"
+            'company_name' => "Samir's Shop",
+            'company_email' => 'samir@company.com'
         ]);
 
 

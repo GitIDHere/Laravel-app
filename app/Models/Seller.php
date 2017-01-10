@@ -27,9 +27,10 @@ class Seller extends Model
         return $this->hasMany('App\Models\Product');
     }
 
-    // public function getSellerID($userID){
-    //     return $this->where('user_id', $userID)->first()->seller_id;
-    // }
+    public function address(){
+        return $this->hasOne('App\Models\SellerAddress');
+    }
+
 
 
 
@@ -44,19 +45,6 @@ class Seller extends Model
     public function addProduct($product){
         return $this->products()->create($product);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
