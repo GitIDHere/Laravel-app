@@ -17,8 +17,7 @@ class SellerAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        //$user = DB::table('users')->where('name', 'John')->first();
-
+        
         if(Seller::where('user_id', Auth::user()->user_id)->first()){
             return $next($request);
         }

@@ -17,13 +17,12 @@ class CreateSellerAddressTable extends Migration
             $table->increments('address_id');
 
             $table->integer('seller_id')->unsigned()->index();
-            $table->foreign('seller_id')->references('seller_id')->on('sellers');
+            $table->foreign('seller_id')->references('seller_id')->on('sellers')->onDelete('cascade');
 
-            $table->string('address_line_1')
-            $table->string('address_line_2')
-            $table->string('street')
-            $table->string('city')
-            $table->string('postcode')
+            $table->string('address_line_1');
+            $table->string('address_line_2');
+            $table->string('city');
+            $table->string('postcode');
 
             $table->timestamps();
         });

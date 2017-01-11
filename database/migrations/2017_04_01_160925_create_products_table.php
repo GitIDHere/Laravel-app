@@ -20,8 +20,8 @@ class CreateProductsTable extends Migration
             $table->increments('product_id');
 
             $table->integer('seller_id')->unsigned()->index();
-            $table->foreign('seller_id')->references('seller_id')->on('sellers');
-            
+            $table->foreign('seller_id')->references('seller_id')->on('sellers')->onDelete('cascade');;
+
             $table->integer('category_id')->unsigned()->index();
             $table->foreign('category_id')->references('category_id')->on('categories');
 
@@ -29,8 +29,8 @@ class CreateProductsTable extends Migration
             $table->integer('product_price')->unsigned();
             $table->integer('stock_amount')->unsigned();
             $table->integer('delivery_cost');
-            $table->string('short_description', 255);
-            $table->string('full_description', 2295);
+            $table->string('short_description');
+            $table->text('full_description');
             $table->timestamps();
         });
     }

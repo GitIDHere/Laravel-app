@@ -24,12 +24,15 @@ class RegisterSeller extends FormRequest
     public function rules()
     {
         return [
+            'seller_name' => 'required|string|regex:/^[\pL\ -\']+$/u|max:50',
             'company_name' => 'required|string|max:50|unique:sellers',
-            'address_1' => 'required|string|max:150',
-            'address_2' => 'string|max:150',
-            'street' => 'required|string|max:150',
-            'city' => 'required|string|max:150',
-            'postcode' => 'required|string|max:10',
+            'company_email' => 'required|email|max:100|unique:sellers',
+
+            'address_line_1' => 'required|string|max:150',
+            'address_line_2' => 'string|max:150',
+            'city' => 'required|string|alpha|max:150',
+            
+            'postcode' => 'required|regex:/[A-Za-z]{1,2}[0-9][0-9A-Za-z]?\s?[0-9][A-Za-z]{2}/u|string|min:5|max:15'
         ];
     }
 }

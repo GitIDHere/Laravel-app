@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function store(StoreProduct $request)
     {
         //Find the seller
-        $seller = Seller::getSeller(Auth::user()->user_id);
+        $seller = Seller::getSellerByUserID(Auth::user()->user_id);
 
         $seller->addProduct($request->all());
 

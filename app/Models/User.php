@@ -21,9 +21,13 @@ class User extends Authenticatable
 
 
 
-    
+
     public function seller(){
       return $this->hasOne('App\Models\Seller');
+    }
+
+    public function createSeller($seller){
+        return $this->seller()->create($seller);
     }
 
 

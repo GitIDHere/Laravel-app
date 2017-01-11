@@ -8,7 +8,9 @@ class Seller extends Model
 {
 
     protected $fillable = [
-        'company_name'
+        'seller_name',
+        'company_name',
+        'company_email'
     ];
 
     protected $hidden = [
@@ -38,24 +40,16 @@ class Seller extends Model
         return $query->where('user_id', $userID)->first()->seller_id;
     }
 
-    public function scopeGetSeller($query, $userID){
-        return $query->where('seller_id', $userID)->first();
+    public function scopeGetSellerByUserID($query, $userID){
+        return $query->where('user_id', $userID)->first();
     }
 
     public function addProduct($product){
         return $this->products()->create($product);
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    public function createAddress($address){
+        return $this->address()->create($address);
+    }
 
 }

@@ -17,11 +17,12 @@ class CreateSellerTable extends Migration
           $table->increments('seller_id');
 
           $table->integer('user_id')->unsigned()->index();
-          $table->foreign('user_id')->references('user_id')->on('users');
-
+          $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+          
+          $table->string('seller_name');
           $table->string('company_name');
           $table->string('company_email');
-          
+
           $table->timestamps();
         });
     }

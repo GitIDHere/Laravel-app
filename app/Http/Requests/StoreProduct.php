@@ -30,10 +30,10 @@ class StoreProduct extends FormRequest
           'stock_amount' => 'required|integer|min:1',
           'delivery_cost' => 'required|integer',
           'short_description' => 'required|string|max:150',
-          'full_description' => 'required|string|max:1000'
+          'full_description' => 'required|string|max:2000'
         ];
     }
-    
+
     /**
      * Set the error messages for the defined validation rules.
      *

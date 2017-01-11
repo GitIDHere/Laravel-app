@@ -46,16 +46,34 @@ class ProductTableSeeder extends Seeder
 
 
         $seller1 = $user1->seller()->create([
+            'seller_name' => "John Doe",
             'company_name' => "John's Shop",
             'company_email' => 'john@company.com'
         ]);
 
-        $seller2 = $user2->seller()->create([
+        $seller1->address()->create([
+            'address_line_1' => '24 Traill Street',
+            'address_line_2' => '',
+            'city' => 'Rostherne',
+            'postcode' => 'WA16 7UY'
+
+        ]);
+
+
+
+
+        $seller2 = $user3->seller()->create([
+            'seller_name' => "Samir Vora",
             'company_name' => "Samir's Shop",
             'company_email' => 'samir@company.com'
         ]);
 
-
+        $seller2->address()->create([
+            'address_line_1' => '87 Felix Lane',
+            'address_line_2' => '',
+            'city' => 'Bristol',
+            'postcode' => 'BS1 4SJ'
+        ]);
 
 
         $seller1->products()->create([
