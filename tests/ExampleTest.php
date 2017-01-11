@@ -6,14 +6,17 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
+
+    //use WithoutMiddleware;
+
     /**
      * A basic functional test example.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testMyAccountPageVisit()
     {
-        $this->visit('/')
+        $this->visit('/my-account')
              ->see('Laravel');
     }
 }

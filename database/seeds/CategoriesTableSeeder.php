@@ -13,23 +13,23 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('categories')->delete();
+        DB::table('categories')->delete();
 
-      $categories = [
-             'Baby',
-             'Beauty',
-             'Books',
-             'Car',
-             'Clothing',
-             'Computers',
-             'Electronics'
+        $categories = [
+            'Baby',
+            'Beauty',
+            'Books',
+            'Car',
+            'Clothing',
+            'Computers',
+            'Electronics'
         ];
         
-      for ($i=0; $i < count($categories); $i++) {
-        Category::create([
-          'title' => $categories[$i]
-        ]);
-      }
+        foreach ($categories as $category) {
+            Category::create([
+                'title' => $category
+            ]);
+        }
 
     }
 

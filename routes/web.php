@@ -25,7 +25,6 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
 
-
     Route::get('seller-register', [
         'as' => 'seller-register',
         'uses' => 'Seller\RegistrationController@create'
