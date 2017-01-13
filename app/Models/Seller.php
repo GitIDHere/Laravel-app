@@ -24,7 +24,7 @@ class Seller extends Model
     public function user(){
       return $this->belongsTo('App\Models\User');
     }
-    
+
     public function products(){
         return $this->hasMany('App\Models\Product');
     }
@@ -33,8 +33,9 @@ class Seller extends Model
         return $this->hasOne('App\Models\SellerAddress');
     }
 
-    public function outstandingOrders(){
-        return $this->hasMany('App\Models\OutstandingOrders');
+    //One product can have many outstanding orders
+    public function outstandingOrder(){
+        return $this->hasMany('App\Models\OutstandingOrder');
     }
 
 

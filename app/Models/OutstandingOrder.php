@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OutstandingOrders extends Model
+class OutstandingOrder extends Model
 {
     protected $fillable = [
         'product_title',
@@ -13,12 +13,12 @@ class OutstandingOrders extends Model
     ];
 
     protected $hidden = [
-        'outstanding_orders_id', 'product_id'
+        'outstanding_order_id', 'product_id'
     ];
 
 
     protected $table = 'outstanding_orders';
-    protected $primaryKey = 'outstanding_orders_id';
+    protected $primaryKey = 'outstanding_order_id';
 
     /*
     * - has one buyer (Buyer is able to view their outstanding orders)

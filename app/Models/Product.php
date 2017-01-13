@@ -31,6 +31,10 @@ class Product extends Model
       return $this->belongsTo('App\Models\Category');
     }
 
+    public function outstandingOrder(){
+        return $this->hasMany('App\Models\OutstandingOrder');
+    }
+
 
     public function getProductPriceAttribute($price){
         return number_format(($price / 100), 2);

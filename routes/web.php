@@ -39,10 +39,12 @@ Route::group(['middleware' => ['auth']], function () {
     //Seller routes
     Route::group(['middleware' => ['sellerAuth']], function () {
 
+
         Route::get('seller-dashboard', [
             'as' => 'seller-overview',
             'uses' => 'Seller\OverviewController@index'
         ]);
+
 
         //Products
         Route::resource('products', 'Seller\ProductController',
@@ -60,13 +62,17 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
+
         //Orders
-        Route::get('orders', [
+        Route::get('orders/outstanding', [
             'as' => 'seller-outstanding-orders',
             'uses' => 'Seller\OrdersController@showOutstandingOrders'
         ]);
 
-
+        Route::get('orders/outstanding/{order}', [
+            'as' => 'seller-outstanding-order',
+            'uses' => 'Seller\OrdersController@showOutstandingOrder'
+        ]);
 
 
 

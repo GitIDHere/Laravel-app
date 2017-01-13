@@ -53,7 +53,7 @@ class ProductTableSeeder extends Seeder
 
                     $orderQuantity = $faker->numberBetween(1, 10);
 
-                    $seller->outstandingOrders()->create([
+                    $seller->outstandingOrder()->create([
                         'product_id' => $product->product_id,
                         'product_title' => $product->product_title,
                         'quantity' => $orderQuantity,

@@ -14,7 +14,7 @@ class CreateOutstandingOrdersTable extends Migration
     public function up()
     {
         Schema::create('outstanding_orders', function (Blueprint $table) {
-            $table->increments('outstanding_orders_id');
+            $table->increments('outstanding_order_id');
 
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');

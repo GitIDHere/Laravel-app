@@ -16,18 +16,22 @@
                 <th>Total Price</th>
                 <th>In Stock</th>
                 <th>Order Created</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             @foreach($outstandingOrders as $order)
             <tr>
-                <td>{{ $order->outstanding_orders_id }}</td>
+                <td>{{ $order->outstanding_order_id }}</td>
                 <td>{{ $order->product_title }}</td>
                 <td>£{{ $order->product_price }}</td>
                 <td>{{ $order->quantity }}</td>
                 <td>£{{ $order->total_price }}</td>
                 <td>{{ $order->product->stock_amount }}</td>
                 <td>{{ $order->created_at }}</td>
+                <td>
+                    <a href="{{ URL::route('seller-outstanding-order', [$order->outstanding_order_id]) }}" class="btn btn-primary">Info</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
