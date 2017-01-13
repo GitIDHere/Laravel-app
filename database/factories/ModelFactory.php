@@ -56,3 +56,15 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
         'full_description' => $faker->paragraph
     ];
 });
+
+
+
+// $factory->define(App\Models\OutstandingOrders::class, function (Faker\Generator $faker) {
+//     return [
+//         'product_id' => ,
+//         'seller_id' => ,
+//         'product_title' => ,
+//         'quantity' => ,
+//         'product_price' => 
+//     ];
+// });

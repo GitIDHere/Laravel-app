@@ -8,15 +8,6 @@ use App\Models\Product;
 
 class CheckIfSellersProduct
 {
-
-    protected $product;
-    protected $seller;
-
-    public function __construct(Seller $seller, Product $product){
-        $this->product = $product;
-        $this->seller = $seller;
-    }
-
     /**
      * Handle an incoming request.
      *
@@ -26,14 +17,14 @@ class CheckIfSellersProduct
      */
     public function handle($request, Closure $next)
     {
-        $seller = Seller::where('user_id', $request->user()->user_id)->first();
+        $seller = Seller::getSellerByUserID($request->user()->user_id);
 
         //Check if product belongs to the seller
-        if((Product::where(['seller_id' => $seller->seller_id, 'product_id' => $request->product]))){
-           return $next($request);
+        if($seller->products()->find($request->product->product_id)){
+            return $next($request);
         }
 
-        return redirect('/products');
+        return redirect()->route('seller-all-products');
     }
 
 

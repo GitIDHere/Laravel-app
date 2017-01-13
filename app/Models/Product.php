@@ -47,12 +47,4 @@ class Product extends Model
         $this->attributes['delivery_cost'] = $cost * 100;
     }
 
-
-
-
-    // public function setFields(array $requestColumns){
-    //     return $this->fill($requestColumns);
-    // }
-
-
 }

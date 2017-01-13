@@ -24,13 +24,17 @@ class Seller extends Model
     public function user(){
       return $this->belongsTo('App\Models\User');
     }
-
+    
     public function products(){
         return $this->hasMany('App\Models\Product');
     }
 
     public function address(){
         return $this->hasOne('App\Models\SellerAddress');
+    }
+
+    public function outstandingOrders(){
+        return $this->hasMany('App\Models\OutstandingOrders');
     }
 
 

@@ -19,16 +19,27 @@ class ProductTableSeeder extends Seeder
     {
         // clear our database ------------------------------------------
         DB::table('users')->delete();
-        DB::table('products')->delete();
         DB::table('sellers')->delete();
+        DB::table('products')->delete();
+        DB::table('outstanding_orders')->delete();
+
+        //$emails = ['john@doe.com', 'jane@doe.com', 'jim@jones.com'];
+
+        $faker = Faker\Factory::create();
 
         $users = factory(App\Models\User::class, 3)->create();
 
-        $users->each(function($user, $key){
+        $users->each(function($user, $key) use ($faker){
 
             //Only make the first and last users sellers
             if($key == 0 || $key == 2){
-                $seller = $user->seller()->save(factory(App\Models\Seller::class)->make());
+
+                //$seller = $user->seller()->save(factory(App\Models\Seller::class)->make());
+                $seller = $user->seller()->create([
+                    'seller_name' => $user->name,
+                    'company_name' => $faker->company,
+                    'company_email' => $faker->companyEmail
+                ]);
 
                 //Seller address
                 $seller->address()->save(factory(App\Models\SellerAddress::class)->make());
@@ -36,8 +47,23 @@ class ProductTableSeeder extends Seeder
                 //Seller products
                 $products = factory(App\Models\Product::class, 2)->make();
 
-                $seller->products()->save($products[0]);
-                $seller->products()->save($products[1]);
+                $products->each(function($product) use ($seller, $faker) {
+
+                    $seller->products()->save($product);
+
+                    $orderQuantity = $faker->numberBetween(1, 10);
+
+                    $seller->outstandingOrders()->create([
+                        'product_id' => $product->product_id,
+                        'product_title' => $product->product_title,
+                        'quantity' => $orderQuantity,
+                        'product_price' => $product->product_price,
+                        'total_price' => ($product->product_price * $orderQuantity)
+                    ]);
+
+                });
+
+
             }
 
         });

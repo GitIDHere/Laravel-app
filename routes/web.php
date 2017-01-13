@@ -11,7 +11,6 @@
 |
 */
 
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
@@ -35,27 +34,52 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'Seller\RegistrationController@store'
     ]);
 
-});
 
 
-Route::group(['middleware' => ['auth', 'sellerAuth']], function () {
+    //Seller routes
+    Route::group(['middleware' => ['sellerAuth']], function () {
 
-    Route::get('seller-dashboard', [
-        'as' => 'seller-overview',
-        'uses' => 'Seller\OverviewController@index'
-    ]);
+        Route::get('seller-dashboard', [
+            'as' => 'seller-overview',
+            'uses' => 'Seller\OverviewController@index'
+        ]);
 
-    Route::resource('products', 'Seller\ProductController',
-    [
-        'names' => [
-            'index' => 'all-products',
-            'create' => 'create-product-form',
-            'store' => 'store-product',
-            'show' => 'show-product',
-            'edit' => 'edit-product-form',
-            'update' => 'update-product',
-            'destroy' => 'destroy-product',
-        ]
-    ]);
+        //Products
+        Route::resource('products', 'Seller\ProductController',
+        [
+            'names' => [
+                'index' => 'seller-all-products',
+                'create' => 'seller-create-product-form',
+                'store' => 'seller-store-product',
+                'show' => 'seller-show-product',
+                'edit' => 'seller-edit-product-form',
+                'update' => 'seller-update-product',
+                'destroy' => 'seller-destroy-product',
+            ]
+        ]);
+
+
+
+        //Orders
+        Route::get('orders', [
+            'as' => 'seller-outstanding-orders',
+            'uses' => 'Seller\OrdersController@showOutstandingOrders'
+        ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+
 
 });

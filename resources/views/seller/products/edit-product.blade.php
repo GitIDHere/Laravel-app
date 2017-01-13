@@ -5,11 +5,11 @@
 
     {!! Breadcrumbs::render('Edit-Product', $product) !!}
 
-    <a href="{{ URL::route('show-product', $product) }}" class="btn btn-primary">Back</a>
+    <a href="{{ URL::route('seller-show-product', $product) }}" class="btn btn-primary">Back</a>
 
     @include('partials.errors')
 
-    <form class="col-md-12" method="post" action="{{ URL::route('update-product', $product) }}" >
+    <form class="col-md-12" method="post" action="{{ URL::route('seller-update-product', $product) }}" >
 
         {{ method_field('PUT') }}
 

@@ -7,7 +7,7 @@
 
     @include('partials.errors')
 
-    <form id="add-product-form" class="col-md-12" method="post" action="{{ URL::route('store-product') }}" enctype="multipart/form-data">
+    <form id="add-product-form" class="col-md-12" method="post" action="{{ URL::route('seller-store-product') }}" enctype="multipart/form-data">
 
         @include ('partials.product-form')
 

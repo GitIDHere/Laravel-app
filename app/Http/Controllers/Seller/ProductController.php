@@ -31,9 +31,10 @@ class ProductController extends Controller
         $sellerID = Seller::getSellerID(Auth::user()->user_id);
 
         //Eager load the products attaching the categories title
+        // 'category' refers to a function in the Product model
         $products = Product::where('seller_id', $sellerID)->with('category')->get();
 
-        return view('seller.products')->with('products', $products);
+        return view('seller.products.all-products')->with('products', $products);
     }
 
     /**
@@ -43,7 +44,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('seller.add-product')
+        return view('seller.products.add-product')
         ->with('categories', Category::all());
     }
 
@@ -75,7 +76,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('seller.view-product')
+        return view('seller.products.view-product')
         ->with('product', $product);
     }
 
@@ -88,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('seller.edit-product')
+        return view('seller.products.edit-product')
         ->with([
           'product' => $product,
           'categories' => Category::all()
@@ -122,6 +123,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+
+        flash()->success('Success', 'Product successfully deleted');
+
         return Redirect::to('products/');
     }
 }

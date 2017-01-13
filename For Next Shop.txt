@@ -1,0 +1,132 @@
+		Completed
+------------------------------------------
+- Bread crumbs
+- Validate form before storing
+- Prevent mass assignment
+- use named routes
+- group the seller in it's own authentication middleware
+- The product should use seller_id not user_id
+- Sanitising inputs
+- Show products based on the seller id not all
+- Prevent John Doe accessing Jane Doe's products
+- Categories Table
+- Instead of injecting dependencies via method params, should I use constructors?
+- Show category in index() controller method
+------------------------------------------
+
+- Get seller to register company name first
+- Redirect to named route
+- Add seller in front of named routes
+- Flash success when edit and create product
+- Check if cateogry is in the array before storing it
+- Assign web middleware to each constructor
+
+
+
+
+
+- Remove SellerController since it only manages the first tabs and not every item
+- Registration confirmation email for seller registration
+- Add company table
+- product title short
+- Handle route not found exceptions
+- Store images
+- Global currency symbol
+- Listeners on stock reduction to send email when limit is reached = set by the seller
+- Orders table
+
+- $table->foreign('product_id')->references('id')->on('products');
+
+
+
+		Names
+------------------------
+- product-edit/product-add/product-overview/product-view
+- Don't have seller/buyer extentions on the children since the parent is seller/buyer
+- Don't have main_pages
+- Font awesome
+- Name the seller = Business
+- Short product title
+- Remove product_prefix from columns as it is in the table
+
+
+
+
+
+
+
+
+
+
+
+
+
+			Orders
+-----------------------------------
+- Get notified of when new order is placed
+- See how many orders are outstanding
+- See fulfilled orders
+- Cancel order + confirm cancel of order
+- Horizontal List view
+- Buyer information = delivery address, payment method, contact info 
+- Dynamically load the appropriate view into the main orders view
+- When marked as fulfilled
+	- Removed from outstanding
+	- Placed in fulfilled
+	- Stock updated
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

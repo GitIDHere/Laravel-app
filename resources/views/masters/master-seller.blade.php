@@ -36,7 +36,7 @@
                   </a>
                   <ul class="dropdown-menu" role="menu">
                       <li>
-                        <a href="{{ url('/my-account') }}">My Account</a>
+                        <a href="{{ URL::route('my-account') }}">My Account</a>
                       </li>
                       <li>
                           <a href="{{ url('/logout') }}"
@@ -61,7 +61,8 @@
             <div class="col-sm-3 col-md-2 sidebar">
               <ul class="nav nav-sidebar">
                 <li class="{{ Request::is('seller-dashboard') ? 'active' : '' }}"><a href="{{ URL::route('seller-overview') }}">Overview <span class="sr-only">(current)</span></a></li>
-                <li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ URL::route('all-products') }}">My Products</a></li>
+                <li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ URL::route('seller-all-products') }}">My Products</a></li>
+                <li class="{{ Request::is('orders') ? 'active' : '' }}"><a href="{{ URL::route('seller-outstanding-orders') }}">Orders</a></li>
                 <li><a href="#">Analytics</a></li>
                 <li><a href="#">Messages</a></li>
                 <li><a href="#">Settings</a></li>
